@@ -6,9 +6,14 @@ A JUCE 8 audio plugin (VST3, AU, Standalone; macOS): twelve drawable LFO graphs 
 
 ![OpenLFO](Assets/screenshot.png)
 
-**Status:** 0.1.0, an early release. The AU and VST3 pass `auval` and `pluginval` (strictness 10), but host tempo sync, automation and the MIDI drag gesture have not yet been tried in a DAW. There are no prebuilt binaries yet; build it or its installer from source as below.
+**Status:** 0.1.0, an early release. The AU and VST3 pass `auval` and `pluginval` (strictness 10), but host tempo sync, automation and the MIDI drag gesture have not yet been tried in a DAW. 
+## Install
 
-## Build
+Download `OpenLFO-0.1.0-macOS.pkg` from the [latest release](https://github.com/CryoSnake22/OpenLFO/releases/latest) and open it. It installs the VST3, the Audio Unit and the standalone app, for all users or just for you, on macOS 11 or later (Apple Silicon and Intel). The package is signed and notarised. Rescan plugins in your host afterwards if OpenLFO does not show up.
+
+To uninstall, delete `OpenLFO.vst3` and `OpenLFO.component` from `Library/Audio/Plug-Ins/VST3` and `Components`, and `OpenLFO.app` from `Applications`.
+
+## Build from source
 
 Needs macOS 11 or later, the Xcode command line tools, CMake 3.24+ and Ninja (`brew install cmake ninja`).
 
@@ -23,7 +28,7 @@ make build CONFIG=Release
 
 Artefacts land in `build/OpenLFO_artefacts/<Config>/{VST3,AU,Standalone}/OpenLFO.*`. `COPY_PLUGIN_AFTER_BUILD` is on, so the VST3 and AU are also installed to the user plugin folders.
 
-## Installer
+## Building the installer
 
 ```bash
 make installer                # dist/OpenLFO-<version>-macOS.pkg
@@ -38,8 +43,6 @@ SIGN_APP="Developer ID Application: Your Name (TEAMID)" \
 SIGN_PKG="Developer ID Installer: Your Name (TEAMID)" \
 NOTARY_PROFILE=<notarytool keychain profile> make installer
 ```
-
-To uninstall, delete `OpenLFO.vst3` and `OpenLFO.component` from `Library/Audio/Plug-Ins/VST3` and `Components`, and `OpenLFO.app` from `Applications`.
 
 ## Using it
 
