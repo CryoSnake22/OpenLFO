@@ -1,4 +1,4 @@
-.PHONY: build run clean
+.PHONY: build run installer clean
 PROJECT_NAME = OpenLFO
 PRODUCT_NAME = OpenLFO
 BUILD_DIR = build
@@ -10,6 +10,9 @@ build:
 
 run: build
 	@open "./$(BUILD_DIR)/$(PROJECT_NAME)_artefacts/$(CONFIG)/Standalone/$(PRODUCT_NAME).app"
+
+installer:
+	@./Installer/build-installer.sh
 
 clean:
 	@rm -rf $(BUILD_DIR)
